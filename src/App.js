@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class App extends React.Component {
+import {CardList} from './components/card-list.component'
+
+class App extends Component {
   constructor(){
     super();
     this.state = {
@@ -27,6 +29,7 @@ class App extends React.Component {
     console.log("render was called " + new Date().toTimeString());
     return(
       <div>
+        <CardList name="this is passed to as props to Cardlist"></CardList>
         {
           this.state.monsters.map(elementInMonsters =>
                                               (
@@ -39,6 +42,7 @@ class App extends React.Component {
     );
   }
 }
+
 export default App;
 
 /*
