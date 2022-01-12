@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {CardList} from './components/card-list.component'
+import {CardList} from './components/card-list/card-list.component'
 
 class App extends Component {
   constructor(){
@@ -28,17 +28,9 @@ class App extends Component {
     // console.log(this.state.monsters)
     console.log("render was called " + new Date().toTimeString());
     return(
-      <div>
-        <CardList name="this is passed to as props to Cardlist"></CardList>
-        {
-          this.state.monsters.map(elementInMonsters =>
-                                              (
-                                                <h1 id={elementInMonsters.id}>{elementInMonsters.name}</h1>
-                                              )
-                                 ) 
-        }
-      
-      </div>
+          <div id="CardList">
+            <CardList monsterList={this.state.monsters}></CardList>);
+          </div>
     );
   }
 }
