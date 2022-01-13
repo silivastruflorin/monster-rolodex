@@ -7,6 +7,7 @@ class App extends Component {
     super();
     this.state = {
       monsters : [],  
+      searchField : ''
     };
   }
 
@@ -24,12 +25,28 @@ class App extends Component {
     console.log("State was updated");
   }
 
+  testSearchbox = params => {
+    return console.log(params);
+  }
+
   render(){
     // console.log(this.state.monsters)
+    const {monsters, searchField} = this.state; //destructurialize the state object , same as const monster = this.state.monsters .. 
+    const filteredMonster = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
+
     console.log("render was called " + new Date().toTimeString());
     return(
           <div id="CardList">
-            <CardList monsterList={this.state.monsters}></CardList>);
+            {/* <input type="search" placeholder='seach for monsters' onChange={e => this.testSearchbox(e.target.value)}></input>  done without arrow function */}
+            <input 
+                type="search" 
+                placeholder='seach for monsters' 
+                onChange={e => this.setState({searchField: e.target.value})}         /* 'e' object received from onChage, 
+                                                                                     e.target returns <input> html element 
+                                                                                     e.target.value we get the value inserted in the html element 
+                                                                                     */ 
+            />                                                                                                                                                                                                  
+            <CardList monsterList={filteredMonster}/>);
           </div>
     );
   }
