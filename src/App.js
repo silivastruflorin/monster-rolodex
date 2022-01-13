@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import {CardList} from './components/card-list/card-list.component'
+import { SearchBox } from './components/search-box/search-box.component';
 
 class App extends Component {
   constructor(){
@@ -38,14 +39,7 @@ class App extends Component {
     return(
           <div id="CardList">
             {/* <input type="search" placeholder='seach for monsters' onChange={e => this.testSearchbox(e.target.value)}></input>  done without arrow function */}
-            <input 
-                type="search" 
-                placeholder='seach for monsters' 
-                onChange={e => this.setState({searchField: e.target.value})}         /* 'e' object received from onChage, 
-                                                                                     e.target returns <input> html element 
-                                                                                     e.target.value we get the value inserted in the html element 
-                                                                                     */ 
-            />                                                                                                                                                                                                  
+            <SearchBox placeholder='search monsters' modifyOnChange={e => this.setState({searchField: e.target.value})} />                                                                                     
             <CardList monsterList={filteredMonster}/>);
           </div>
     );
