@@ -15,10 +15,13 @@ var  App = (props) => {
   let [mosters, setMonsters] = useState([]);
   let [searchField, setSearchField] = useState('');
 
+
   useEffect(()=>{
+     console.log('use effect')
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
     .then((users) => setMonsters(users));
+
   },[])
  
   // componentDidMount(){
@@ -44,13 +47,18 @@ var  App = (props) => {
     const filteredMonster = mosters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
 
   //   console.log("render was called " + new Date().toTimeString());
-    return(
+     return(
+        
           <div id="CardList">
+
+              
             {/* <input type="search" placeholder='seach for monsters' onChange={e => this.testSearchbox(e.target.value)}></input>  done without arrow function */}
             <SearchBox placeholder='search monsters' modifyOnChange={e => setSearchField(e.target.value)} />                                                                                     
             <CardList monsterList={filteredMonster}/>);
+            
           </div>
     );
+    
  // }
 }
 
